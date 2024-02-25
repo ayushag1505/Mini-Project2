@@ -1,0 +1,78 @@
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+    }
+
+    #navbar{
+        display: flex;
+        align-items: center;
+        background-color: salmon;
+        font-size: 1rem;
+        position: sticky;
+        top: 0;
+        font-family: cursive;
+        justify-content: space-around;
+    }
+    #navbar .logo img{
+        height: 10vh;
+        width: 10vw;
+        margin: 0.2rem;
+    }
+    #navbar .logo p{
+        text-align: center;
+        margin-top: 0;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .search{
+        background: white;
+        border-radius: 20px;
+        padding-left: 15px; 
+    }
+    #navbar .search input{
+        padding: 8px;
+        font-size: 1.5rem;
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+    #navbar .search button{
+        background: gray;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    #navbar .user-section a{
+        text-decoration: none;
+        margin: 3px;
+        color: white;
+        font-size: 1.4rem;
+    }
+
+    #navbar .user-section a:hover{
+        cursor: pointer;
+        color: lightgreen;
+    }
+
+</style>
+
+<nav id="navbar">
+    <div class="logo">
+        <img src="" alt="" id="logoimg" />
+        <p>TAJA</p>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search Recipe">
+        <button>🔍</button>
+    </div>
+    <div class="user-section">
+        <a href="#">Favourites</a>
+        <a href="#">User</a>
+    </div>
+</nav>

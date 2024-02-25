@@ -3,7 +3,9 @@ const app = express() ;
 const path = require('path') ;
 const mongoose = require('mongoose') ;
 const methodOverride = require('method-override') ;
+const ejsMate = require('ejs-mate') ;
 
+app.engine('ejs', ejsMate) ;
 app.set('view engine', 'ejs') ;
 app.set('views', path.join(__dirname, 'views')) ;
 
@@ -20,7 +22,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/recipe')
 })
 
 app.get('/', (req, res)=>{
-    res.send('Hello') ;
+    // res.send('Hello') ;
+    res.render('simple') ;
 })
 
 app.listen(3000, ()=>{
