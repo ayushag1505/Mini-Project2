@@ -1,0 +1,86 @@
+<% layout('layouts/boilerplate') %>
+
+<%- include('partials/navbar') %>
+
+<style>
+    .title{
+    text-align: center;
+    font-size: 5rem;
+    padding-top: 1.5rem;
+    font-weight: 600;
+    color: var(--color3);
+    }
+
+    .search-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    height: 5rem;
+    background: #1C2541;
+    padding: 1rem;
+    border-radius: 2rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 5rem;
+    } 
+
+    #search{
+    margin: 0 0.5rem 0 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #1C2541;
+    color: #fff;
+    }
+
+    #search::placeholder{
+    color: #6FFFE9;
+    font-size: 1rem;
+    opacity: 0.7;
+    }
+
+    .fa:hover{
+    color: #FFFF00;
+    }
+
+    #container{
+        background-image: url('https://cdn.pixabay.com/photo/2016/08/01/16/18/raspberries-1561457_640.jpg');
+        background-position: center;
+        background-size: cover;
+        height: 600px;
+        width: 100%;
+    }
+</style>
+
+<div id="container">
+    <div class="title">Find a Recipe</div>
+    <div class="search-wrapper">
+        <div class="fa fa-search"></div>
+        <input
+            type="text"
+            name=""
+            id="search"
+            placeholder="What do you want to eat?"
+            onkeyup="search()"
+        />
+        <div class="fa fa-times" onclick="clearInput()"></div>
+    </div>
+</div>
+
+
+<div class="row" style="margin: 0px;">
+    <h1>Recipes</h1>
+    <% for(let item of recipes){ %>
+        <div class="col-lg-4">
+            <div class="card shadow mx-auto mt-2 mb-3" style="width: 18rem;">
+                <img src="<%= item.img %>" class="card-img-top" alt="recipeImage">
+                <div class="card-body">
+                  <h3 class="card-title"><%= item.name %></h3>
+                  <a href="/recipes/<%= item._id %>" class="btn btn-warning">View Recipe</a>
+                </div>
+            </div>
+        </div>
+            
+    <% } %>
+</div>

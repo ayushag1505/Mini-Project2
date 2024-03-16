@@ -13,6 +13,10 @@ app.use(express.static(path.join(__dirname, 'public'))) ;
 app.use(express.urlencoded({extended: true})) ;
 app.use(methodOverride('_method')) ;
 
+const recipeRoutes = require('./routes/recipeRoutes') ;
+
+const seed = require('./seed') ;
+
 mongoose.connect('mongodb://127.0.0.1:27017/recipe')
 .then(()=>{
     console.log('Database Connected');
@@ -21,10 +25,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/recipe')
     console.log(err);
 })
 
-app.get('/', (req, res)=>{
-    // res.send('Hello') ;
-    res.render('simple') ;
-})
+// app.get('/', (req, res)=>{
+//     // res.send('Hello') ;
+//     // res.render('recipe') ;
+//     res.render('index') ;
+// })
+
+// console.log('database seeded') ;
+// seed() ;
+
+app.use(recipeRoutes) ;
 
 app.listen(3000, ()=>{
     console.log('Server Connected at 3000');

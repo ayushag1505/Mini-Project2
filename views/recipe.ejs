@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate') %>
+
+<%- include('partials/navbar') %>
+
+<style>
+    #container{
+        /* width: 100vw; */
+        background: lightgreen;
+        color: #212121;
+        padding: 5% 10%;
+    }
+
+    #top{
+        display: flex;
+        justify-content: space-around;
+        margin: 10px;
+    }
+
+    #top #image img{
+        height: 30vh;
+        width: 25vw;
+    }
+
+    #ingredient-section{
+        margin: 20px auto;
+    }
+
+    h5{
+        background: white;
+        margin: 20px auto;
+        padding: 10px;
+    }
+</style>
+
+
+<div id="container">
+    <div id="top">
+        <div id="image">
+            <img src="<%= foundRecipe.img %>" alt="">
+        </div>
+        <div id="intro">
+            <h1><%= foundRecipe.name %></h1>
+            <h3 style="color: white;">by XYZ</h3>
+        </div>
+    </div>
+
+    <div id="ingredient-section">
+        <h1>Ingredients: </h2>
+        <h5><%= foundRecipe.ingredients %></h5>
+    </div>
+
+    <div id="recipe">
+        <h1>Instructions: </h1>
+        <h5><%= foundRecipe.instructions %></h5>
+    </div>
+</div>
