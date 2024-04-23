@@ -23,4 +23,25 @@ router.post('/', async(req, res)=>{
     res.redirect('/') ;
 })
 
+router.get('/:id/edit', async(req, res)=>{
+    let {id} = req.params ;
+    let foundRecipe = await Recipe.findById(id) ;
+    res.render('edit', {foundRecipe})
+})
+
+router.patch('/:id', async(req, res)=>{
+    let {id} = req.params ;
+    let {name, img, ingredients, instructions} = req.body ;
+    await Recipe.findByIdAndUpdate(id, {name, img, ingredients, instructions}) ;
+
+    res.redirect(`/`) ;
+})
+
+router.delete('/:id', async(req, res)=>{
+    let {id} = req.params ;
+    await Recipe.findByIdAndDelete(id) ;
+
+    res.redirect('/') ;
+})
+
 module.exports = router ;
