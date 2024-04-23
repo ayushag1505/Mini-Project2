@@ -68,13 +68,22 @@
         <img src="../images/cooking.png" alt="" id="logoimg" />
         <p>TAJA</p>
     </div>
-    <!-- <div class="search">
-        <input type="text" placeholder="Search Recipe">
-        <button>🔍</button>
-    </div> -->
-    <div class="user-section">
-        <a href="/new">AddNew</a>
-        <a href="#">Favourites</a>
-        <a href="#">User</a>
+    
+    <div class="user-section d-flex">
+        <% if(currentUser && currentUser.post == 'chef'){ %>
+            <a href="/new">AddNew</a>
+        <% } %>
+        <!-- <a href="#">Favourites</a>
+        <a href="#">User</a> -->
+        <% if(!currentUser){ %>
+            <a href="/login" class="nav-link mx-2">Login</a>
+        <% }  else{ %>
+            <a href="#" class="nav-link mx-2"><%= currentUser.username %></a>
+            <a href="/user/cart" class="nav-link mx-2">
+                Favourites
+                <sup> <span class="badge bg-danger"><%= currentUser.favourites.length %></span> </sup>
+            </a>
+            <a href="/logout" class="nav-link mx-2">Logout</a>
+        <% } %>
     </div>
 </nav>

@@ -78,10 +78,12 @@
                 <div class="card-body">
                   <h3 class="card-title"><%= item.name %></h3>
                   <a href="/recipes/<%= item._id %>" class="btn btn-warning">View Recipe</a>
-                  <a href="/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
-                  <form class="d-inline-block" action="/<%= item._id %>?_method=delete" method="post">
-                    <button class="btn btn-danger">Delete</button>
-                  </form>
+                  <% if(currentUser && currentUser.post == 'chef'){ %>
+                    <a href="/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
+                    <form class="d-inline-block" action="/<%= item._id %>?_method=delete" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                  <% } %>
                 </div>
             </div>
         </div>

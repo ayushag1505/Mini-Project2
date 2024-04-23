@@ -23,6 +23,11 @@ const recipeSchema = new mongoose.Schema({
         type: String ,
         trim: true ,
         required: true  
+    },
+
+    author : {
+        type : mongoose.Schema.Types.ObjectId ,
+        ref : 'User'
     }
 })
 
