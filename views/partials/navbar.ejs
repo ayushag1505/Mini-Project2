@@ -73,13 +73,11 @@
         <% if(currentUser && currentUser.post == 'chef'){ %>
             <a href="/new">AddNew</a>
         <% } %>
-        <!-- <a href="#">Favourites</a>
-        <a href="#">User</a> -->
         <% if(!currentUser){ %>
             <a href="/login" class="nav-link mx-2">Login</a>
         <% }  else{ %>
             <a href="#" class="nav-link mx-2"><%= currentUser.username %></a>
-            <a href="/user/cart" class="nav-link mx-2">
+            <a href="#" class="nav-link mx-2">
                 Favourites
                 <sup> <span class="badge bg-danger"><%= currentUser.favourites.length %></span> </sup>
             </a>
