@@ -51,6 +51,21 @@
         height: 600px;
         width: 100%;
     }
+
+    .cross{
+        padding-right: 2px;
+    }
+
+    .cross:hover{
+        cursor: pointer;
+    }
+
+    #none{
+        font-size: 2rem; 
+        text-align: center;
+        margin: 5px;
+        font-weight: 900;
+    }
 </style>
 
 <div id="container">
@@ -64,29 +79,70 @@
             placeholder="What do you want to eat?"
             onkeyup="search()"
         />
-        <div class="fa fa-times" onclick="clearInput()"></div>
+        <div class="cross" onclick="clearInput()">❌</div>
     </div>
 </div>
 
 
 <div class="row" style="margin: 0px;">
     <h1>Recipes</h1>
-    <% for(let item of recipes){ %>
-        <div class="col-lg-4">
-            <div class="card shadow mx-auto mt-2 mb-3" style="width: 18rem;">
-                <img src="<%= item.img %>" class="card-img-top" alt="recipeImage">
-                <div class="card-body">
-                  <h3 class="card-title"><%= item.name %></h3>
-                  <a href="/recipes/<%= item._id %>" class="btn btn-warning">View Recipe</a>
-                  <% if(currentUser && currentUser.post == 'chef'){ %>
-                    <a href="/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
-                    <form class="d-inline-block" action="/<%= item._id %>?_method=delete" method="post">
-                        <button class="btn btn-danger">Delete</button>
-                    </form>
-                  <% } %>
+    <div id="recipes">
+        <p id="none" style="display: none">
+            Sorry, The food you were looking for is not available.
+        </p>
+        <% for(let item of recipes){ %>
+            <div class="col-lg-4 hello">
+                <div class="card shadow mx-auto mt-2 mb-3" style="width: 18rem;">
+                    <img src="<%= item.img %>" class="card-img-top" alt="recipeImage">
+                    <div class="card-body">
+                      <h3 class="card-title"><%= item.name %></h3>
+                      <a href="/recipes/<%= item._id %>" class="btn btn-warning">View Recipe</a>
+                      <% if(currentUser && currentUser.post == 'chef'){ %>
+                        <a href="/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
+                        <form class="d-inline-block" action="/<%= item._id %>?_method=delete" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                      <% } %>
+                    </div>
                 </div>
             </div>
-        </div>
-            
-    <% } %>
+                
+        <% } %>
+    </div>
 </div>
+
+
+<script>
+    const search = ()=>{
+        const searchBox = document.getElementById('search').value.toUpperCase() ;
+        const storeRecipes = document.getElementById('recipes') ;
+        const recipes = document.querySelectorAll('.hello') ;
+        const recipesName = storeRecipes.getElementsByTagName('h3') ;
+
+        let found = false ;
+
+        for(let i=0; i<recipesName.length; i++){
+            let match = recipes[i].getElementsByTagName('h3')[0] ;
+            
+            if(match){
+                let val = match.textContent || match.innerHTML ;
+                
+                if(val.toUpperCase().indexOf(searchBox) > -1){
+                    recipes[i].style.display = "" ;
+                    found = true ;
+                } else{
+                    recipes[i].style.display = "none" ;
+                }
+            }
+        }
+
+        if(found === false) {
+            document.getElementById('none').style.display = "" ;
+        }
+
+    }
+
+    const clearInput = ()=>{
+        document.getElementById('search').value = "" ;
+    }
+</script>
