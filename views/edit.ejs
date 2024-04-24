@@ -1,8 +1,41 @@
 <% layout('layouts/boilerplate') %>
-
+<style>
+    div{
+        background-color: #50727B;
+    }
+    label{
+        color:white;
+    }
+    .form-control{
+        background-color: #35374B;
+    }
+    .form-control::placeholder {
+        color: white;
+    }
+    .needs-validation{
+        display:flex;
+        flex-direction: column;
+        /* align-items: center; */
+        justify-content: center;
+        align-content: center;
+        height: 100vh;
+    }
+    .heading{
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid white;
+        border-radius: 5px;
+    }
+    .btn{
+        border: 1px solid white;
+    }
+</style>
 <div class="row">
     <div class="col-6 mx-auto">
         <form action="/<%= foundRecipe._id %>?_method=patch" method="post" novalidate class="needs-validation">
+            <h1 class="heading">Please Add New Recipe Details</h1>
             <div class="mb-3">
                 <label for="naam">Recipe Name:</label>
                 <input type="text" class="form-control" name="name" id="naam" placeholder="Name of the Recipe" value="<%= foundRecipe.name %>" required>
