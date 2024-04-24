@@ -77,7 +77,7 @@
             <a href="/login" class="nav-link mx-2">Login</a>
         <% }  else{ %>
             <a href="#" class="nav-link mx-2"><%= currentUser.username %></a>
-            <a href="#" class="nav-link mx-2">
+            <a href="/user/favourites" class="nav-link mx-2">
                 Favourites
                 <sup> <span class="badge bg-danger"><%= currentUser.favourites.length %></span> </sup>
             </a>

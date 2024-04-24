@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate') %>
+<%- include('partials/navbar') %>
+
+<div class="row" style="margin: 0px;">
+    <div id="recipes">
+        <% for(let item of user.favourites){ %>
+            <div class="col-lg-4 hello">
+                <div class="card shadow mx-auto mt-2 mb-3" style="width: 18rem;">
+                    <img src="<%= item.img %>" class="card-img-top" alt="recipeImage">
+                    <div class="card-body">
+                      <h3 class="card-title"><%= item.name %></h3>
+                      <a href="/recipes/<%= item._id %>" class="btn btn-warning">View Recipe</a>
+                      <% if(currentUser && currentUser.post == 'chef'){ %>
+                        <a href="/<%= item._id %>/edit" class="btn btn-primary">Edit</a>
+                        <form class="d-inline-block" action="/<%= item._id %>?_method=delete" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                      <% } %>
+                    </div>
+                </div>
+            </div>
+                
+        <% } %>
+    </div>
+</div>

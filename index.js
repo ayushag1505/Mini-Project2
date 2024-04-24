@@ -13,6 +13,7 @@ const User = require('./models/User')
 
 const recipeRoutes = require('./routes/recipeRoutes') ;
 const authRoutes = require('./routes/authRoutes') ;
+const favRoutes = require('./routes/favRoutes') ;
 
 app.engine('ejs', ejsMate) ;
 app.set('view engine', 'ejs') ;
@@ -64,6 +65,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/recipe')
 
 app.use(recipeRoutes) ;
 app.use(authRoutes) ;
+app.use(favRoutes) ;
 
 app.listen(3000, ()=>{
     console.log('Server Connected at 3000');

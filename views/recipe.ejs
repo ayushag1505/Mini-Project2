@@ -52,4 +52,14 @@
         <h1>Instructions: </h1>
         <h5><%= foundRecipe.instructions %></h5>
     </div>
+
+    <div>
+        <form action="/user/<%= foundRecipe._id %>/add" class="d-inline-block" method="post">
+            <% if(currentUser.favourites.indexOf(foundRecipe._id) > -1){ %>
+                <button class="btn btn-lg btn-info btn-disable" style="cursor: not-allowed;" disabled>Already in Favourites</button>
+            <% } else{ %>
+                <button class="btn btn-lg btn-info">Add to Favourites</button>
+            <% } %>
+        </form>
+    </div>
 </div>
